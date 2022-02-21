@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% import "_macros/alert.html.twig" as Dialog %}
 
 {% block title %}Test filtres et fonctions{% endblock %}
 
@@ -11,6 +12,8 @@
             </div>
         {% endfor %}
     {% endfor %}
+
+    {{ Dialog.alert('Hello', "warning") }}
 
     <br><br><br>
     {{ "Les functions" |title }}
@@ -82,6 +85,11 @@
     <br><br>
     Trim : {{ '  I like Twig.  '|trim }}
     <br><br>
+    <hr>
+    <h1> Test affiches des images importés</h1>
+    <img src="{{ asset('build/images/image1.png') }}" alt="image1">
+    <img src="{{ asset("build/images/image2.png") }}" alt="image2">
+    <hr>
 
 
 {% endblock %}
