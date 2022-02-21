@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Test filtres et fonctions{% endblock %}
+
+{% block body %}
+
+    <br><br><br>
+    {{ "Les functions" |title }}
+    <br><br><br>
+    {{ dump(user) }}
+    Min : {{ min(number) }}
+    <br><br>
+    Max : {{ max(number) }}
+    <br><br>
+    {% if date("02/19/2022") < date('-2days') %}
+        {{ "Cette date correspond bien à celle d'il y a 2j !" }}
+    {% endif %}
+    <br><br>
+    {% block sidebar %}
+        {{ parent() }}
+        <li><a href="#">Mon compte</a></li>
+    {% endblock %}
+    <br><br>
+    Random entre 50 et 100 : {{ random(50, 100) }}
+    <br><br>
+    Range compte jusque 6 de 2 en 2 :
+    {% for i in range(0, 6, 2) %}
+        {{ i }}
+    {% endfor %}
+    <br><br>
+
+    <hr>
+
+    <br><br><br>
+    {{ "Les filtres" |title }}
+    <br><br><br>
+
+    Date : {{ "21-02-2022"|date("d/m/Y") }}
+    <br><br>
+    First : {{ number |first }}
+    <br><br>
+    Last : {{ number |last }}
+    <br><br>
+    Number_format : {{ (-9800.333)|number_format(2, '.', ',') }}
+    <br><br>
+    Length : {{ user |length }}
+    <br><br>
+    Capitalize : {{ 'mon prénom est chloé' |capitalize }}
+    <br><br>
+    Join : {{ user |join(', ', ' et ') }}
+    <br><br>
+    Upper : {{ 'mon prénom est chloé' |upper }}
+    <br><br>
+    Lower : {{ 'MON PRENOM EST CHLOE' |lower }}
+    <br><br>
+    Json_encode : {{ user |json_encode() }}
+    <br><br>
+    Keys : {% for key in animals|keys %}
+    {{ key }}
+{% endfor %}
+    <br><br>
+    Reverse : {{ '1234'|reverse }}
+    <br><br>
+    Round : {{ 42.55|round }} et {{ 42.55|round(1, 'floor') }}
+    <br><br>
+    Slug : {{ 'Wôrķšƥáçè ~~sèťtïñğš~~'|slug }}
+    {# Pour fonctionner on doit l'installer  #}
+    <br><br>
+    Replace : {{ "I like %this% and %that%."|replace({'%this%': 'foo', '%that%': "bar"}) }}
+    <br><br>
+    Split :
+    {% set foo = "one,two,three"|split(',') %}
+    {# foo contains ['one', 'two', 'three'] #}
+    <br><br>
+    Trim : {{ '  I like Twig.  '|trim }}
+    <br><br>
+
+
+{% endblock %}
